@@ -1,3 +1,5 @@
+console.log("item.js loaded");
+
 const price = () => {
 
 
