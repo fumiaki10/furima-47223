@@ -11,8 +11,6 @@ class Item < ApplicationRecord
 
   has_one_attached :order
 
-  validates :price, presence: true
-
   with_options presence: true do
     validates :image
     validates :name
