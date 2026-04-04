@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   has_one_attached :image
 
-  has_one_attached :order
+  has_one :order
 
   validates :price, presence: true
 
