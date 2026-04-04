@@ -9,12 +9,18 @@ class OrdersController < ApplicationController
   end
 
   def create
+    gon.public_key = ENV['PAYJP_SECRET_KEY']
     @order_address = OrderAddress.new(order_params)
 
     if @order_address.valid?
-      pay_item
-      @order_address.save
-      redirect_to root_path
+      begin
+        pay_item
+        @order_address.save
+        redirect_to root_path
+      rescue StandardError
+        flash.now[:alert] = '決済に失敗しました'
+        render :index, status: :unprocessable_entity
+      end
     else
       render :index, status: :unprocessable_entity
     end

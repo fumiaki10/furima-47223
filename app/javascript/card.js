@@ -1,4 +1,8 @@
-document.addEventListener("turbo:load", () => {
+document.addEventListener("turbo:load", setupPayjp);
+document.addEventListener("turbo:render", setupPayjp);
+
+
+function setupPayjp() {
   const form = document.getElementById("charge-form");
   if (!form) return;
 
@@ -40,4 +44,4 @@ document.addEventListener("turbo:load", () => {
         alert("トークンの生成に失敗しました");
       });
   });
-});
+}
