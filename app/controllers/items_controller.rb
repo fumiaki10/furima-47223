@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
   def index
-    @items = Item.includes(:user).order(created_at: :desc)
+    @items = Item.includes(:user, :order).order(created_at: :desc)
   end
 
   def new
@@ -59,6 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path unless current_user == @item.user
+    redirect_to root_path if current_user != @item.user || @item.order.present?
   end
 end
