@@ -26,7 +26,6 @@ function setupPayjp() {
     payjp.createToken(numberElement)
       .then((response) => {
         if (response.error) {
-          alert(response.error.message);
         } else {
           const token = response.id;
 
@@ -41,7 +40,6 @@ function setupPayjp() {
       })
       .catch((error) => {
         console.error(error);
-        alert("トークンの生成に失敗しました");
       });
   });
 }
